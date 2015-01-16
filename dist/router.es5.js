@@ -1,7 +1,9 @@
-/*
- * This is for Angular 1.3
+/**
+ * @name ngFuturisticRouter
+ *
+ * @description
+ * A module for adding new a routing system Angular 1.
  */
-
 angular.module('ngFuturisticRouter', ['ngFuturisticRouter.generated']).
   directive('routerComponent', routerComponentDirective).
   directive('routerComponent', routerComponentFillContentDirective).
@@ -10,15 +12,17 @@ angular.module('ngFuturisticRouter', ['ngFuturisticRouter.generated']).
   directive('routerViewPort', routerViewPortDirective).
   directive('routerLink', routerLinkDirective);
 
-/*
+
+/**
+ * @name routerComponentDirective
+ *
+ * @description
  * A component is:
  * - a controller
  * - a template
  * - an optional router
  *
  * This directive makes it easy to group all of them into a single concept
- *
- *
  */
 function routerComponentDirective($animate, $controller, $compile, $rootScope, $location, $templateRequest, router, componentLoader) {
   $rootScope.$watch(function () {
@@ -114,18 +118,20 @@ function routerComponentFillContentDirective($compile) {
 
 
 
-/*
- * ## `<router-view-port>`
- * Responsibile for wiring up stuff
- * needs to appear inside of a routerComponent
+/**
+ * @name routerViewPort
+ * 
+ * @description
+ * The place where resolved content goes.
  *
- * Use:
+ * ## Use
+ * `<router-view-port>` needs to appear inside of a routerComponent
  *
  * ```html
  * <div router-view-port="name"></div>
  * ```
  *
- * The value for the routerViewComponent is optional
+ * The value for the `routerViewComponent` attribute is optional.
  */
 function routerViewPortDirective($animate, $compile, $templateRequest, componentLoader) {
   return {
@@ -232,8 +238,10 @@ function routerLinkDirective(router, $location, $parse) {
 
 }
 
-/*
- * This lets you set up your ~conventions~
+/**
+ * @name componentLoader
+ * @description
+ * This lets you set up your conventions
  */
 function componentLoaderProvider() {
   var componentToCtrl = function componentToCtrlDefault(name) {
@@ -244,7 +252,7 @@ function componentLoaderProvider() {
 
   var componentToTemplate = function componentToTemplateDefault(name) {
     var dashName = dashCase(name);
-    return '/components/' + dashName + '/' + dashName + '.html';
+    return 'components/' + dashName + '/' + dashName + '.html';
   };
 
   function componentLoader(name) {
@@ -333,6 +341,7 @@ function getDescriptors(object) {
   // }
   return descriptors;
 };
+
   "use strict";
   var RouteRecognizer = (function() {
     var map = (function() {
@@ -850,6 +859,7 @@ function getDescriptors(object) {
       }
     };
     RouteRecognizer.prototype.map = map;
+    RouteRecognizer.VERSION = 'VERSION_STRING_PLACEHOLDER';
     return RouteRecognizer;
   }());
   ;
@@ -864,7 +874,7 @@ function getDescriptors(object) {
     this.childRecognizer = new RouteRecognizer();
   };
   var $Router = Router;
-  ($traceurRuntime.createClass)(Router, {
+  (createClass)(Router, {
     childRouter: function() {
       var child = new $Router(this);
       this.children.push(child);

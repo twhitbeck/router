@@ -16,7 +16,7 @@ var PATH = {
   SRC: './src/**/*.ats'
 };
 
-gulp.task('build', ['transpile', 'angularify', 'docs']);
+gulp.task('build', ['transpile', 'angularify', 'dgeni']);
 
 gulp.task('transpile', function() {
   return gulp.src(PATH.SRC)
