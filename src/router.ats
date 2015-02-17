@@ -244,7 +244,7 @@ export class Router {
     var path = router.recognizer.generate(name, params);
 
     while (router = router.parent) {
-      prefix += router.previousSegment;
+      prefix = router.previousSegment + prefix;
     }
     return prefix + path;
   }
